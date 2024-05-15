@@ -5,12 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../components/productReducer";
 import CartPage from "../components/cartPage";
 import { Link } from "react-router-dom";
-import { addToCart } from "./cartReducer";
+import { addToCart,updateTotalPrice } from "./cartReducer";
 import { connect } from "react-redux";
-import { showPopup } from "../Actions/popupActions";
 import "../styles/popup.css";
 
-function Products({ products, addToCart, showPopup })
+function Products({ products, addToCart,updateTotalPrice})
 {
     
     const dispatch=useDispatch();
@@ -21,7 +20,7 @@ function Products({ products, addToCart, showPopup })
 
     const handleAddToCart = (product) => {
         addToCart(product);
-        showPopup();
+        dispatch(updateTotalPrice());    
       };
 
     useEffect(() => {
@@ -84,4 +83,4 @@ const mapStateToProps = state => ({
     products: state.products
   });
 
-  export  default connect(mapStateToProps, { addToCart,showPopup })(Products);
+  export  default connect(mapStateToProps, { addToCart,updateTotalPrice })(Products);
