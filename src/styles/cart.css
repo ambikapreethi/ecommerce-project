@@ -1,0 +1,32 @@
+h1
+{
+    text-align: center;
+    color: yellow;
+}
+
+button{
+    font-size: large;
+    height: 40px;
+    border-radius: 4px 3px;
+}
+.title
+{
+    font-weight: bold;
+}
+.prod
+{
+    background-color:red;
+    width:190px;
+    font-size: 15px;
+}
+.main
+{
+    margin-left: 100px;
+    border:2px solid grey;
+    background-color: cornflowerblue;
+    width:1000px;
+}
+span
+{
+font-weight: bold;
+}
