@@ -7,11 +7,12 @@ import CartPage from "../components/cartPage";
 import { Link } from "react-router-dom";
 import { addToCart,updateTotalPrice } from "./cartReducer";
 import { connect } from "react-redux";
-import "../styles/popup.css";
+import PopupBox from "./popupBox";
+import "../styles/popupBox.css";
 
-function Products({ products, addToCart,updateTotalPrice})
+function Products({ products, addToCart,updateTotalPrice })
 {
-    
+    const isPopupOpen = useSelector((state) => state.cart.isPopupOpen);
     const dispatch=useDispatch();
     const currentDate = new Date().toISOString();
     const items=useSelector(state=>state.products.products);
@@ -19,10 +20,13 @@ function Products({ products, addToCart,updateTotalPrice})
     const loading=useSelector(state=>state.products.loading);
 
     const handleAddToCart = (product) => {
+      
         addToCart(product);
-        dispatch(updateTotalPrice());    
+        dispatch(updateTotalPrice());   
+       
       };
 
+   
     useEffect(() => {
        dispatch(fetchProducts());
         
@@ -68,11 +72,12 @@ function Products({ products, addToCart,updateTotalPrice})
                 <h2 className="prodtitle">{item.title}</h2>
                 <img src={item.image} alt="file not found" width="100px" height="80px"/>
                 <p>Price: ${item.price}</p>
-                <Link to="/cart"><p><button onClick={() => handleAddToCart(item)}>Add to Cart</button></p></Link>
-                
+                <Link to="/cart"> <p><button onClick={() =>{handleAddToCart(item)}}>Add to Cart</button>
+                <PopupBox/></p></Link>
             </div>
         
            ))}
+           
            
     </div>
        );   
